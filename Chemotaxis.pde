@@ -4,6 +4,10 @@
  	size(400,400); 
 colony =new Bacteria [1000];
 
+for(int i=0;i<colony.length;i++){
+colony[i] =new Bacteria ();
+
+}
  }   
  void draw()   
  {    
@@ -11,30 +15,31 @@ colony =new Bacteria [1000];
  	background(100,100,175);  
  	for(int i=0;i<colony.length;i++){
 
-	colony.walk();
-	colony.show();
+	colony[i].walk();
+	colony[i].show();
 }
  }  
  class Bacteria    
  {     
- 	int x;
- 	int y;
- 	int r= (int)(Math.random*226);
- 	int g= (int)(Math.random*226);
- 	int b= (int)(Math.random*226);
- 	Bacteria( int x, int y){
+ 	int myx;
+ 	int myy;
+ 	/*int r= (int)(Math.random()*226);
+ 	int g= (int)(Math.random()*226);
+ 	int b= (int)(Math.random()*226);*/
+ 	Bacteria( ){
 
- 		x= (int)(Math.random*401);
- 		y= (int)(Math.random*401);
+ 		myx= (int)(Math.random()*401);
+ 		myy= (int)(Math.random()*401);
 
  	} 
 
  	void walk(){
- 		x=x+((Math.random()*5)-2);
- 		y=y+((Math.random()*5)-2);
+ 		myx=myx+(int)((Math.random()*8)-4);
+ 		myy=myy+(int)((Math.random()*8)-4);
  	}
  	void show(){
- 		fill(r,g,b);
- 		ellipse(x,y,10,10);
+ 		fill((int)myx/2, (int)myy/2, (int)myy/2+(int)myx/2);
+ 		
+ 		ellipse(myx,myy,10,10);
  	} 
- }      
+ }     
