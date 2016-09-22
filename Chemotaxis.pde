@@ -1,11 +1,13 @@
  Bacteria [] colony;
  int i, j;
 Boolean e=false;
-
+int r;
+int m=200;
+int mo=375;
  void setup()    
  {     
  	size(400,400); 
-colony =new Bacteria [400];
+colony =new Bacteria [40];
 
 for(int i=0;i<colony.length;i++){
 colony[i] =new Bacteria ();
@@ -15,30 +17,45 @@ colony[i] =new Bacteria ();
  void draw()   
  {    
 
- 	background(100,100,175);  
+ 	background(100,100,175); 
+ 	//for(int r=0;r<400;r=+2){
+ 	fill(225,0,0);
+ 	 rect(m,i+mo,3,5);
+rect(m+16,j+mo,3,5);
+ 	//}
  	for(int i=0;i<colony.length;i++){
  
 	colony[i].walk();
 	colony[i].show();
 }
 fill(225,0,0);
-rect(mouseX,i+mouseY,3,5);
-rect(mouseX+16,j+mouseY,3,5);
+
 fill(0,225,0);
-rect(mouseX,mouseY,20,20);
+rect(m,mo,20,20);
+if(keyCode==UP){
+	mo-=4;
+}
+if(keyCode==DOWN){
+	mo+=4;
+}
+if(keyCode==RIGHT){
+	m+=4;
+}
+if(keyCode==LEFT){
+	m-=4;
+}
 if(e==true){
 	i=0;
 	j=0;
 }
-if(keyCode==90){
-if (keyPressed==true||keyCode==89){
-	
-	
-	i=i-50;
-	
-	j=j-50;
 
-}
+if(keyCode==90){
+	
+	
+	i=i-2;
+	
+	j=j-2;
+
 }System.out.println(i);
 if(i<=-400){
 	e=true;
@@ -63,16 +80,16 @@ else{
  	}  
 
  	void walk(){
- 		if(mouseX>myx){
+ 		if(m>myx){
  			q=9;
  		}
- 		if(mouseX<myx){
+ 		if(m<myx){
  			q=7;
  		}
- 		if(mouseY>myy){
+ 		if(mo>myy){
  			w=9;
  		}
- 		if(mouseY<myy){
+ 		if(mo<myy){
  			w=7;
  		}
  		if(mouseX==myx&&mouseY==myy){
@@ -82,6 +99,10 @@ else{
  		
  		myx=myx+(int)((Math.random()*q)-4);
  		myy=myy+(int)((Math.random()*w)-4);
+ 		if(get(myx,myy)==color(225,0,0)){
+ 			myx=(int)(Math.random()*401);
+ 			myy= (int)(Math.random()*101);
+ 		}
  	}
  	void show(){
  		fill((int)myx/2, (int)myy/2, (int)myy/2+(int)myx/2);
